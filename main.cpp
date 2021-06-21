@@ -1,22 +1,21 @@
 #include <iostream>
 
 int alpha_find (std::string mail) {
-    int alpha = 0;
     for (int i = 0; i < mail.length(); ++i) {
         if (mail[i] == '@') {
-            return alpha = i;
+            return i;
         }
     }
-    return alpha;
+    return 0;
 }
 
 bool point_check (std::string mail, int alpha) {
     int l = mail.length() - 1;
-    if (mail[0] == 46 || mail[alpha - 1] == 46 || mail[alpha + 1] == 46 || mail[l] == 46) {
+    if (mail[0] == '.' || mail[alpha - 1] == '.' || mail[alpha + 1] == '.' || mail[l] == '.') {
         return false;
     } else {
         for (int i = 1; i < l; ++i) {
-            if (mail[i] == 46 && mail[i - 1] == 46) {
+            if (mail[i] == '.' && mail[i - 1] == '.') {
                 return false;
             }
         }
@@ -30,7 +29,7 @@ bool checking (std::string mail, int alpha) {
         return false;
     } else {
         for (int i = 0; i < alpha; ++i) {
-            if (mail[i] < 33 || mail[i] > 126) {
+            if (mail[i] < '!' || mail[i] > '~') {
                 return false;
             } else {
                 for (int j = 0; j < failCh.length(); ++j) {
@@ -41,7 +40,7 @@ bool checking (std::string mail, int alpha) {
             }
         }
         for (int i = alpha + 1; i < mail.length(); ++i) {
-            if (mail[i] < 45 || (mail[i] > 46 && mail[i] < 65) || (mail[i] > 90 && mail[i] < 97) || mail[i] > 122) {
+            if (mail[i] < '-' || (mail[i] > '.' && mail[i] < 'A') || (mail[i] > 'Z' && mail[i] < 'a') || mail[i] > 'z') {
                 return false;
             }
         }
